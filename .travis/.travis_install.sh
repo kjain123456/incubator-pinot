@@ -19,24 +19,24 @@
 #
 
 # Ignore changes not related to pinot code
-echo 'Changed files:'
-git diff --name-only $TRAVIS_COMMIT_RANGE
-if [ $? -ne 0 ]; then
-  echo 'Commit range is invalid.'
-  exit 1
-fi
+# echo 'Changed files:'
+# git diff --name-only $TRAVIS_COMMIT_RANGE
+# if [ $? -ne 0 ]; then
+#   echo 'Commit range is invalid.'
+#   exit 1
+# fi
 
-# ThirdEye related changes
-git diff --name-only $TRAVIS_COMMIT_RANGE | egrep '^(thirdeye)'
-noThirdEyeChange=$?
+# # ThirdEye related changes
+# git diff --name-only $TRAVIS_COMMIT_RANGE | egrep '^(thirdeye)'
+# noThirdEyeChange=$?
 
-if [ $noThirdEyeChange -eq 0 ]; then
-  echo 'ThirdEye changes.'
-  if [ "$RUN_INTEGRATION_TESTS" == 'false' ]; then
-    echo 'Skip ThirdEye build when integration tests off'
-    exit 0
-  fi
-fi
+# if [ $noThirdEyeChange -eq 0 ]; then
+#   echo 'ThirdEye changes.'
+#   if [ "$RUN_INTEGRATION_TESTS" == 'false' ]; then
+#     echo 'Skip ThirdEye build when integration tests off'
+#     exit 0
+#   fi
+# fi
 
 KAFKA_BUILD_OPTS=""
 if [ "$KAFKA_VERSION" != '2.0' ] && [ "$KAFKA_VERSION" != '' ]; then
